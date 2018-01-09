@@ -21,6 +21,28 @@ namespace ConsoleApplication
             if(QuadernoBase.Ping())
             {
                 Console.WriteLine("Connection established successfully");
+
+                //Create a Contact
+                QContact contact = new QContact
+                {
+                    ContactName = "John Doe",
+                    FirstName = "John",
+                    LastName = "Doe",
+                    Email = "john.doe@lost-company.com",
+                    Kind = QContactKind.person
+                };
+
+                try
+                {
+                    //contact.Save();
+
+                    List<QContact> contacts = QContact.Find();
+                    Console.WriteLine("Retrieved contacts: " + contacts.Count());
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine("Error executing some operation: " + ex.Message);
+                }
             }
             else
             {

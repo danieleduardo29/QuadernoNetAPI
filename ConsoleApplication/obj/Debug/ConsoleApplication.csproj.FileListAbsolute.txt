@@ -6,3 +6,7 @@ c:\users\daniel\documents\visual studio 2013\Projects\QuadernoNetAPI\ConsoleAppl
 c:\users\daniel\documents\visual studio 2013\Projects\QuadernoNetAPI\ConsoleApplication\obj\Debug\ConsoleApplication.csprojResolveAssemblyReference.cache
 c:\users\daniel\documents\visual studio 2013\Projects\QuadernoNetAPI\ConsoleApplication\obj\Debug\ConsoleApplication.exe
 c:\users\daniel\documents\visual studio 2013\Projects\QuadernoNetAPI\ConsoleApplication\obj\Debug\ConsoleApplication.pdb
+C:\Users\Daniel\Documents\Visual Studio 2013\Projects\QuadernoNetAPI\ConsoleApplication\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\Daniel\Documents\Visual Studio 2013\Projects\QuadernoNetAPI\ConsoleApplication\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Daniel\Documents\Visual Studio 2013\Projects\QuadernoNetAPI\ConsoleApplication\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\Daniel\Documents\Visual Studio 2013\Projects\QuadernoNetAPI\ConsoleApplication\bin\Debug\Newtonsoft.Json.xml
