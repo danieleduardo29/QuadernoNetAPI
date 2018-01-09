@@ -1,0 +1,8 @@
+c:\users\daniel\documents\visual studio 2013\Projects\QuadernoNetAPI\ConsoleApplication\bin\Debug\ConsoleApplication.exe.config
+c:\users\daniel\documents\visual studio 2013\Projects\QuadernoNetAPI\ConsoleApplication\bin\Debug\ConsoleApplication.exe
+c:\users\daniel\documents\visual studio 2013\Projects\QuadernoNetAPI\ConsoleApplication\bin\Debug\ConsoleApplication.pdb
+c:\users\daniel\documents\visual studio 2013\Projects\QuadernoNetAPI\ConsoleApplication\bin\Debug\QuadernoNetAPI.dll
+c:\users\daniel\documents\visual studio 2013\Projects\QuadernoNetAPI\ConsoleApplication\bin\Debug\QuadernoNetAPI.pdb
+c:\users\daniel\documents\visual studio 2013\Projects\QuadernoNetAPI\ConsoleApplication\obj\Debug\ConsoleApplication.csprojResolveAssemblyReference.cache
+c:\users\daniel\documents\visual studio 2013\Projects\QuadernoNetAPI\ConsoleApplication\obj\Debug\ConsoleApplication.exe
+c:\users\daniel\documents\visual studio 2013\Projects\QuadernoNetAPI\ConsoleApplication\obj\Debug\ConsoleApplication.pdb
