@@ -15,34 +15,42 @@ namespace QuadernoNetAPI
     public class QuadernoBase
     {
         private static string API_KEY = null;
-        private static string URL = null;
+        private static string API_URL = null;
+        private static string API_VERSION = null;
 
-        public static void Init(string apiKey, string url)
+        public static void Init(string apiKey, string apiUrl, string apiVersion = null)
         {
             API_KEY = apiKey;
-            URL = url;
+            API_URL = apiUrl;
+            API_VERSION = apiVersion;
         }
 
         public static bool Ping()
         {
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("http://sandbox-quadernoapp.com/api/");
+            client.BaseAddress = new Uri(API_URL.Contains("sandbox") ? 
+                                                "http://sandbox-quadernoapp.com/api/" :
+                                                "https://quadernoapp.com/api/");
             var byteArray = new UTF8Encoding().GetBytes(API_KEY);
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
-            
-            HttpResponseMessage response = client.GetAsync("ping.json").Result;
-            HttpContent content = response.Content;
 
-            // ... Check Status Code                                
-            Console.WriteLine("Response StatusCode: " + (int)response.StatusCode);
+            using (HttpResponseMessage response = client.GetAsync("ping.json").Result)
+            {
+                HttpContent content = response.Content;
 
-            // ... Read the string.
-            string result = content.ReadAsStringAsync().Result;
-
-            // ... Display the result.
-            Console.WriteLine(result);
-            
-            return true;
+                if (((int)response.StatusCode) == 200)
+                {
+                    return true;
+                }
+                else
+                {
+                    // ... Display the response text.
+                    //Console.WriteLine(content.ReadAsStringAsync().Result);
+                    return false;
+                }
+            }
         }
+
+
     }
 }

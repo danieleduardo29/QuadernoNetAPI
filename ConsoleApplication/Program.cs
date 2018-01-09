@@ -18,8 +18,16 @@ namespace ConsoleApplication
             string apiURL = ConfigurationManager.AppSettings["QuadernoURL"];
 
             QuadernoBase.Init(privateKey, apiURL);
-            QuadernoBase.Ping();
+            if(QuadernoBase.Ping())
+            {
+                Console.WriteLine("Connection established successfully");
+            }
+            else
+            {
+                Console.WriteLine("Error establishing connection. Be sure that you added the right Key and URL on App.config");
+            }
 
+            Console.WriteLine("\nPress a key to exit");
             Console.ReadKey();
         }
     }
