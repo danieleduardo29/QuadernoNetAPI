@@ -14,7 +14,7 @@ namespace QuadernoNetAPI
         public QContactKind Kind { get; set; }
 
         [JsonProperty("first_name")]
-        public string FirstName { get; set; } //ToDo: validate --> required
+        public string FirstName { get; set; }
         
         [JsonProperty("last_name")]
         public string LastName { get; set; }
@@ -40,7 +40,23 @@ namespace QuadernoNetAPI
         [JsonProperty("Country", NullValueHandling = NullValueHandling.Ignore)]
         public string Country { get; set; } //ToDo: restrict to the accepted values
 
-        //Address 2 fields missing
+        [JsonProperty("secondary_street_line_1")]
+        public string SecondaryStreetLine1 { get; set; }
+
+        [JsonProperty("secondary_street_line_2")]
+        public string SecondaryStreetLine2 { get; set; }
+
+        [JsonProperty("secondary_city")]
+        public string SecondaryCity { get; set; }
+
+        [JsonProperty("secondary_postal_code")]
+        public string SecondaryPostalCode { get; set; }
+
+        [JsonProperty("secondary_region", NullValueHandling = NullValueHandling.Ignore)]
+        public string SecondaryRegion { get; set; }
+
+        [JsonProperty("secondary_Country", NullValueHandling = NullValueHandling.Ignore)]
+        public string SecondaryCountry { get; set; } //ToDo: restrict to the accepted values
 
         [JsonProperty("phone_1")]
         public string Phone1 { get; set; }
@@ -58,7 +74,7 @@ namespace QuadernoNetAPI
         public string Web { get; set; }
 
         [JsonProperty("language")]
-        public string Language { get; set; } //ToDo: restrict to the accepted values
+        public string Language { get; set; }
 
         [JsonProperty("tax_id")]
         public string TaxId { get; set; }
@@ -70,7 +86,7 @@ namespace QuadernoNetAPI
         public string BankAccount { get; set; }
 
         [JsonProperty("bic")]
-        public string Bic { get; set; } //ToDo: validate --> required if BankAccount is present
+        public string Bic { get; set; }
 
         [JsonProperty("notes")]
         public string Notes { get; set; }
