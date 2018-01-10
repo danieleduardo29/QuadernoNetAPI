@@ -23,7 +23,7 @@ namespace ConsoleApplication
                 Console.WriteLine("Connection established successfully");
 
                 //Create a Contact
-                QContact contact = new QContact
+                QContact newContact = new QContact
                 {
                     ContactName = "John Doe",
                     FirstName = "John",
@@ -34,18 +34,16 @@ namespace ConsoleApplication
 
                 try
                 {
-                    contact.Save();
+                    newContact.Save();
 
-                    Console.WriteLine("El Id del contacto creado es: " + contact.Id);
+                    Console.WriteLine("The new contact Id is: " + newContact.Id);
 
                     List<QContact> contacts = QContact.Find();
                     Console.WriteLine("Retrieved contacts: " + contacts.Count());
 
-                    foreach(QContact c in contacts)
-                    {
-                        Console.WriteLine("Deleting contact: " + c.Id);
-                        c.Delete();
-                    }
+                    Console.WriteLine("Deleting newContact");
+                    newContact.Delete();
+                    
                 }
                 catch(Exception ex)
                 {
