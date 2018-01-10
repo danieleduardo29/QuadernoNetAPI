@@ -11,7 +11,7 @@ using QuadernoNetAPI;
 ```
 And before any other use you must initialize the wrapper like this:
 ```csharp
-QuadernoBase.Init('YOUR_API_KEY', 'YOUR_API_URL');
+QuadernoBase.Init(<YOUR_API_KEY>, <YOUR_API_URL>);
 ```
 
 ## Testing connection
