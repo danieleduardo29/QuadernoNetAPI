@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Collections;
+using Newtonsoft.Json;
 
 
 namespace QuadernoNetAPI
@@ -20,6 +21,9 @@ namespace QuadernoNetAPI
         private static string API_VERSION = null;
 
         private static HttpClient CLIENT = new HttpClient();
+
+        [JsonProperty("id")]
+        public long Id { get; set; }
 
         public static void Init(string apiKey, string apiUrl, string apiVersion = null)
         {
@@ -42,23 +46,24 @@ namespace QuadernoNetAPI
                 }
                 else
                 {
-                    // ... Display the response text.
-                    //Console.WriteLine(content.ReadAsStringAsync().Result);
+                    //Console.WriteLine(content.ReadAsStringAsync().Result); // Display the response text
                     return false;
                 }
             }
         }
 
-        public static void Post(string url, Object obj)
+        public static void Post(string url, QuadernoBase obj)
         {
             using(HttpResponseMessage response = CLIENT.PostAsJsonAsync(
                 url, obj).Result)
             {
                 response.EnsureSuccessStatusCode();
+
+                obj.Id = response.Content.ReadAsAsync<QuadernoBase>().Result.Id;
             }
         }
 
-        public static void Put(string url, Object obj)
+        public static void Put(string url, QuadernoBase obj)
         {
             using (HttpResponseMessage response = CLIENT.PutAsJsonAsync(
                 url, obj).Result)

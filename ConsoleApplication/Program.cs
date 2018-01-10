@@ -34,10 +34,18 @@ namespace ConsoleApplication
 
                 try
                 {
-                    //contact.Save();
+                    contact.Save();
+
+                    Console.WriteLine("El Id del contacto creado es: " + contact.Id);
 
                     List<QContact> contacts = QContact.Find();
                     Console.WriteLine("Retrieved contacts: " + contacts.Count());
+
+                    foreach(QContact c in contacts)
+                    {
+                        Console.WriteLine("Deleting contact: " + c.Id);
+                        c.Delete();
+                    }
                 }
                 catch(Exception ex)
                 {

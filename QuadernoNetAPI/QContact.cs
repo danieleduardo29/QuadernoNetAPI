@@ -10,9 +10,6 @@ namespace QuadernoNetAPI
 {
     public class QContact : QuadernoBase
     {
-        [JsonProperty("id")]
-        public long Id { get; set; }
-
         [JsonProperty("kind"), JsonConverter(typeof(StringEnumConverter))]
         public QContactKind Kind { get; set; }
 
@@ -84,7 +81,6 @@ namespace QuadernoNetAPI
             if(Id == 0)
             {
                 Post("contacts.json", this);
-                //ToDo: set the Id ???
             }
             else
             {
@@ -116,6 +112,7 @@ namespace QuadernoNetAPI
         public void Delete()
         {
             Delete(string.Format("contacts/{0}.json", Id));
+            Id = 0;
         }
     }
 
