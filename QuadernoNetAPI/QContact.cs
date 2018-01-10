@@ -37,8 +37,8 @@ namespace QuadernoNetAPI
         [JsonProperty("region", NullValueHandling = NullValueHandling.Ignore)]
         public string Region { get; set; }
 
-        [JsonProperty("Country", NullValueHandling = NullValueHandling.Ignore)]
-        public string Country { get; set; } //ToDo: restrict to the accepted values
+        [JsonProperty("country", NullValueHandling = NullValueHandling.Ignore)]
+        public string Country { get; set; } // 2 chars (ISO 3166-1 alpha-2)
 
         [JsonProperty("secondary_street_line_1")]
         public string SecondaryStreetLine1 { get; set; }
@@ -55,8 +55,8 @@ namespace QuadernoNetAPI
         [JsonProperty("secondary_region", NullValueHandling = NullValueHandling.Ignore)]
         public string SecondaryRegion { get; set; }
 
-        [JsonProperty("secondary_Country", NullValueHandling = NullValueHandling.Ignore)]
-        public string SecondaryCountry { get; set; } //ToDo: restrict to the accepted values
+        [JsonProperty("secondary_country", NullValueHandling = NullValueHandling.Ignore)]
+        public string SecondaryCountry { get; set; } // 2 chars (ISO 3166-1 alpha-2)
 
         [JsonProperty("phone_1")]
         public string Phone1 { get; set; }
