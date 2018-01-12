@@ -20,8 +20,8 @@ namespace QuadernoNetAPI
         [JsonProperty("po_number")]
         public string PoNumber { get; set; }
 
-        [JsonProperty("due_date"), JsonConverter(typeof(OnlyDateConverter))]
-        public DateTime DueDate { get; set; }
+        [JsonProperty("due_date", NullValueHandling = NullValueHandling.Ignore), JsonConverter(typeof(OnlyDateConverter))]
+        public DateTime? DueDate { get; set; }
 
         [JsonProperty("currency")]
         public string Currency { get; set; } // 3 chars (ISO 4217)
@@ -62,8 +62,8 @@ namespace QuadernoNetAPI
         [JsonProperty("items_attributes")]
         public List<QInvoiceItem> Items { get; set; }
 
-       [JsonProperty("payment_method"), JsonConverter(typeof(StringEnumConverter))]
-        public QPaymentMethod PaymentMethod { get; set; }
+        [JsonProperty("payment_method", NullValueHandling = NullValueHandling.Ignore), JsonConverter(typeof(StringEnumConverter))]
+        public QPaymentMethod? PaymentMethod { get; set; }
 
         //[JsonProperty("custom_metadata")]
         //public Dictionary<string,string> CustomMetadata { get; set; } //ToDo: do the JSON serializing right
@@ -107,14 +107,24 @@ namespace QuadernoNetAPI
 
         public void Save()
         {
+            string result;
             if(Id == 0)
             {
-                Post("invoices.json", this);
+                result = Post("invoices.json", this);
             }
             else
             {
-                Put(string.Format("invoices/{0}.json", Id), this);
+                result = Put(string.Format("invoices/{0}.json", Id), this);
             }
+
+            QInvoice aux = JsonConvert.DeserializeObject<QInvoice>(result);
+            this.ContactId = aux.ContactId;
+            this.DiscountCents = aux.DiscountCents;
+            this.Pdf = aux.Pdf;
+            this.Permalink = aux.Permalink;
+            this.SecureId = aux.SecureId;
+            this.SubtotalCents = aux.SubtotalCents;
+            this.TotalCents = aux.TotalCents;
         }
 
         public static List<QInvoice> Find(string query = null)

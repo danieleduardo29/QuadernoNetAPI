@@ -52,7 +52,7 @@ namespace QuadernoNetAPI
             }
         }
 
-        public static void Post(string url, QuadernoBase obj)
+        public static string Post(string url, QuadernoBase obj)
         {
             string jsonObj = JsonConvert.SerializeObject(obj);
 
@@ -62,17 +62,21 @@ namespace QuadernoNetAPI
                 response.EnsureSuccessStatusCode();
 
                 string result = response.Content.ReadAsStringAsync().Result;
-                QuadernoBase responseObj = JsonConvert.DeserializeObject<QuadernoBase>(result);
+                var responseObj = JsonConvert.DeserializeObject<QuadernoBase>(result);
                 obj.Id = responseObj.Id;
+
+                return result;
             }
         }
 
-        public static void Put(string url, QuadernoBase obj)
+        public static string Put(string url, QuadernoBase obj)
         {
             using (HttpResponseMessage response = CLIENT.PutAsJsonAsync(
                 url, obj).Result)
             {
                 response.EnsureSuccessStatusCode();
+
+                return response.Content.ReadAsStringAsync().Result;
             }
         }
 

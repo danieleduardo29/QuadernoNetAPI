@@ -28,7 +28,8 @@ namespace ConsoleApplication
                 {
                     Currency = "EUR",
                     IssueDate = DateTime.Now,
-                    DueDate = DateTime.Now
+                    //DueDate = DateTime.Now,
+                    PaymentMethod = QPaymentMethod.credit_card //When it's set it will register a payment and the Invoice state will be paid
                 };
 
                 QInvoiceItem item = new QInvoiceItem
@@ -51,8 +52,8 @@ namespace ConsoleApplication
 
                 invoice.Save();
 
+                Console.WriteLine(invoice.Pdf);
                 
-
                 var invoices = QInvoice.Find();
 
                 foreach(QInvoice inv in invoices)

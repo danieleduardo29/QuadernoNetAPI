@@ -15,10 +15,10 @@ namespace QuadernoNetAPI
         [JsonProperty("quantity")]
         public decimal Quantity { get; set; }
 
-        [JsonProperty("unit_price")]
+        [JsonProperty("unit_price", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public decimal UnitPrice { get; set; } //Required
 
-        [JsonProperty("total_amount")]
+        [JsonProperty("total_amount", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public decimal TotalAmount { get; set; } //Required if UnitPrice not present
 
         [JsonProperty("discount_rate")]
