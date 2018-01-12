@@ -48,9 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="QInvoice.cs" />
     <Compile Include="QContact.cs" />
+    <Compile Include="QInvoiceItem.cs" />
     <Compile Include="QuadernoBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\OnlyDateConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

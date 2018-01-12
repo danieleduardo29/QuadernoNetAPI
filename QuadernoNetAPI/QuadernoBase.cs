@@ -22,7 +22,7 @@ namespace QuadernoNetAPI
 
         private static HttpClient CLIENT = new HttpClient();
 
-        [JsonProperty("id")]
+        [JsonProperty("id", DefaultValueHandling = DefaultValueHandling.Ignore)]
         public long Id { get; set; }
 
         public static void Init(string apiKey, string apiUrl, string apiVersion = null)
@@ -54,12 +54,16 @@ namespace QuadernoNetAPI
 
         public static void Post(string url, QuadernoBase obj)
         {
+            string jsonObj = JsonConvert.SerializeObject(obj);
+
             using(HttpResponseMessage response = CLIENT.PostAsJsonAsync(
                 url, obj).Result)
             {
                 response.EnsureSuccessStatusCode();
 
-                obj.Id = response.Content.ReadAsAsync<QuadernoBase>().Result.Id;
+                string result = response.Content.ReadAsStringAsync().Result;
+                QuadernoBase responseObj = JsonConvert.DeserializeObject<QuadernoBase>(result);
+                obj.Id = responseObj.Id;
             }
         }
 

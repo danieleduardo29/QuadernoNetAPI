@@ -22,32 +22,42 @@ namespace ConsoleApplication
             {
                 Console.WriteLine("Connection established successfully");
 
-                //Create a Contact
-                QContact newContact = new QContact
+                //CallSomeContactMethods();
+
+                QInvoice invoice = new QInvoice
                 {
-                    ContactName = "John Doe",
-                    FirstName = "John",
-                    LastName = "Doe",
-                    Email = "john.doe@lost-company.com",
-                    Kind = QContactKind.person
+                    Currency = "EUR",
+                    IssueDate = DateTime.Now,
+                    DueDate = DateTime.Now
                 };
 
-                try
+                QInvoiceItem item = new QInvoiceItem
                 {
-                    newContact.Save();
+                    Description = "Coffee",
+                    UnitPrice = 3.2m,
+                    Quantity = 2
+                };
 
-                    Console.WriteLine("The new contact Id is: " + newContact.Id);
+                invoice.Items.Add(item);
 
-                    List<QContact> contacts = QContact.Find();
-                    Console.WriteLine("Retrieved contacts: " + contacts.Count());
-
-                    Console.WriteLine("Deleting newContact");
-                    newContact.Delete();
-                    
-                }
-                catch(Exception ex)
+                invoice.Contact = new QContact
                 {
-                    Console.WriteLine("Error executing some operation: " + ex.Message);
+                    FirstName = "Bruce",
+                    LastName = "Wayne",
+                    Kind = QContactKind.person,
+                    ContactName = "Batman",
+                    Email = "ceo@wayne-enterprises.com"
+                };
+
+                invoice.Save();
+
+                
+
+                var invoices = QInvoice.Find();
+
+                foreach(QInvoice inv in invoices)
+                {
+                    inv.Delete();
                 }
             }
             else
@@ -57,6 +67,37 @@ namespace ConsoleApplication
 
             Console.WriteLine("\nPress a key to exit");
             Console.ReadKey();
+        }
+
+        private static void CallSomeContactMethods()
+        {
+            //Create a Contact
+            QContact newContact = new QContact
+            {
+                ContactName = "John Doe",
+                FirstName = "John",
+                LastName = "Doe",
+                Email = "john.doe@lost-company.com",
+                Kind = QContactKind.person
+            };
+
+            try
+            {
+                newContact.Save();
+
+                Console.WriteLine("The new contact Id is: " + newContact.Id);
+
+                List<QContact> contacts = QContact.Find();
+                Console.WriteLine("Retrieved contacts: " + contacts.Count());
+
+                Console.WriteLine("Deleting newContact");
+                newContact.Delete();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error executing some operation with QContacts: " + ex.Message);
+            }
         }
     }
 }
