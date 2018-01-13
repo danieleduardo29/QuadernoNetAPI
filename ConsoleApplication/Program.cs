@@ -24,42 +24,7 @@ namespace ConsoleApplication
 
                 //CallSomeContactMethods();
 
-                QInvoice invoice = new QInvoice
-                {
-                    Currency = "EUR",
-                    IssueDate = DateTime.Now,
-                    //DueDate = DateTime.Now,
-                    PaymentMethod = QPaymentMethod.credit_card //When it's set it will register a payment and the Invoice state will be paid
-                };
-
-                QInvoiceItem item = new QInvoiceItem
-                {
-                    Description = "Coffee",
-                    UnitPrice = 3.2m,
-                    Quantity = 2
-                };
-
-                invoice.Items.Add(item);
-
-                invoice.Contact = new QContact
-                {
-                    FirstName = "Bruce",
-                    LastName = "Wayne",
-                    Kind = QContactKind.person,
-                    ContactName = "Batman",
-                    Email = "ceo@wayne-enterprises.com"
-                };
-
-                invoice.Save();
-
-                Console.WriteLine(invoice.Pdf);
-                
-                var invoices = QInvoice.Find();
-
-                foreach(QInvoice inv in invoices)
-                {
-                    inv.Delete();
-                }
+                CallSomeInvoicesMethods();
             }
             else
             {
@@ -68,6 +33,51 @@ namespace ConsoleApplication
 
             Console.WriteLine("\nPress a key to exit");
             Console.ReadKey();
+        }
+
+        private static void CallSomeInvoicesMethods()
+        {
+            QInvoice invoice = new QInvoice
+            {
+                Currency = "EUR",
+                IssueDate = DateTime.Now,
+                //DueDate = DateTime.Now,
+                PaymentMethod = QPaymentMethod.credit_card //When it's set it will register a payment and the Invoice state will be paid
+            };
+
+            QInvoiceItem item = new QInvoiceItem
+            {
+                Description = "Coffee",
+                UnitPrice = 3.2m,
+                Quantity = 2
+            };
+
+            invoice.Items.Add(item);
+
+            invoice.Contact = new QContact
+            {
+                FirstName = "Bruce",
+                LastName = "Wayne",
+                Kind = QContactKind.person,
+                ContactName = "Batman",
+                Email = "ceo@wayne-enterprises.com"
+            };
+
+            invoice.Save();
+
+            Console.WriteLine("The invoice you just created is available here: " + invoice.Pdf);
+
+            invoice.Deliver();
+
+            /*
+            //Get the invoices and delete them
+            var invoices = QInvoice.Find();
+
+            foreach(QInvoice inv in invoices)
+            {
+                inv.Delete();
+            }
+            */
         }
 
         private static void CallSomeContactMethods()

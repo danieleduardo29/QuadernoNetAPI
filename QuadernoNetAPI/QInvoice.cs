@@ -152,6 +152,13 @@ namespace QuadernoNetAPI
             Delete(string.Format("invoices/{0}.json", Id));
             Id = 0;
         }
+
+        public void Deliver()
+        {
+            string result = Get(string.Format("invoices/{0}/deliver.json", Id));
+
+            //Console.WriteLine(result);
+        }
     }
 
     public enum QInvoiceState
