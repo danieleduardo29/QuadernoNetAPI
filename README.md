@@ -57,3 +57,40 @@ contact.Save();                             // Throws an exception on error
 QContact contact = QContact.Find(<ID_TO_FIND>));
 contact.Delete();                             // Throws an exception on error
 ```
+
+### Invoices
+
+#### Creating, saving and deliver an invoice
+```csharp
+QInvoice invoice = new QInvoice
+{
+	Currency = "EUR",
+	IssueDate = DateTime.Now,
+	//DueDate = DateTime.Now,
+	PaymentMethod = QPaymentMethod.credit_card //When it's set it will register a payment and the Invoice state will be paid
+};
+
+QInvoiceItem item = new QInvoiceItem
+{
+	Description = "Coffee",
+	UnitPrice = 3.2m,
+	Quantity = 2
+};
+
+invoice.Items.Add(item);
+
+invoice.Contact = new QContact
+{
+	FirstName = "Bruce",
+	LastName = "Wayne",
+	Kind = QContactKind.person,
+	ContactName = "Batman",
+	Email = "ceo@wayne-enterprises.com"
+};
+
+invoice.Save();
+
+Console.WriteLine("The invoice you just created is available here: " + invoice.Pdf);
+
+invoice.Deliver();
+```
